@@ -14,7 +14,7 @@ $(document).ready(function () {
         });
       },
     });
-  }, 100);
+  }, 1000);
 
   // fetching data from BME280 sensor
   setInterval(() => {
@@ -31,7 +31,7 @@ $(document).ready(function () {
         });
       },
     });
-  }, 100);
+  }, 1000);
 
   // fetching image from image.json
 
@@ -55,7 +55,7 @@ $(document).ready(function () {
         });
       },
     });
-  }, 100);
+  }, 1000);
 
   // insert json data automatically for obc sensor
   let Temperature_1 = 5;
@@ -134,58 +134,51 @@ $(document).ready(function () {
 });
 
 // code for graph
-/*
-function chartApex() {
-  var options1 = {
-    chart: {
-      height: 280,
-      type: "radialBar",
-    },
-    series: [0],
-    colors: ["#124CD2"],
-    plotOptions: {
-      radialBar: {
+
+var options1 = {
+  chart: {
+    height: 280,
+    type: "radialBar",
+  },
+  series: [0],
+  colors: ["#124CD2"],
+  plotOptions: {
+    radialBar: {
+      startAngle: -135,
+      endAngle: 135,
+      track: {
+        background: "#333",
         startAngle: -135,
         endAngle: 135,
-        track: {
-          background: "#333",
-          startAngle: -135,
-          endAngle: 135,
+      },
+      dataLabels: {
+        name: {
+          show: true,
         },
-        dataLabels: {
-          name: {
-            show: true,
-          },
-          value: {
-            fontSize: "30px",
-            show: true,
-            formatter: function (humidityValue) {
-              return humidityValue + "%";
-            },
+        value: {
+          fontSize: "30px",
+          show: true,
+          formatter: function (humidityValue) {
+            return humidityValue + "%";
           },
         },
       },
     },
-    fill: {
-      type: "gradient",
-      gradient: {
-        shade: "dark",
-        type: "horizontal",
-        gradientToColors: ["#87D4F9"],
-        stops: [0, 100],
-      },
+  },
+  fill: {
+    type: "gradient",
+    gradient: {
+      shade: "dark",
+      type: "horizontal",
+      gradientToColors: ["#87D4F9"],
+      stops: [0, 100],
     },
-    stroke: {
-      lineCap: "butt",
-    },
-    labels: ["Humidity"],
-  };
-  return options1;
-}
-setInterval(chartApex, 100);
-
-var chart = new ApexCharts(document.querySelector("#chart1"), chartApex());
-chart.render();
+  },
+  stroke: {
+    lineCap: "butt",
+  },
+  labels: ["Humidity"],
+};
 
 var options2 = {
   chart: {
@@ -232,9 +225,6 @@ var options2 = {
   labels: ["Altitude"],
 };
 
-var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
-chart2.render();
-
 var options3 = {
   chart: {
     height: 280,
@@ -252,7 +242,7 @@ var options3 = {
           fontSize: "20px",
           show: true,
           formatter: function (pressureValue) {
-            return pressureValue + "kpa";
+            return pressureValue + "hpa";
           },
         },
       },
@@ -273,8 +263,13 @@ var options3 = {
   labels: ["Pressure"],
 };
 
+var chart = new ApexCharts(document.querySelector("#chart1"), options1);
+chart.render();
+var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+chart2.render();
 var chart3 = new ApexCharts(document.querySelector("#chart3"), options3);
 chart3.render();
+
 function updateChart() {
   $.getJSON("BME280.json", function (rez) {
     return rez.json();
@@ -289,5 +284,4 @@ function updateChart() {
   });
 }
 
-setInterval(updateChart, 200);
-*/
+setInterval(updateChart, 2000);
