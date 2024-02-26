@@ -3,14 +3,14 @@ $(document).ready(function () {
   setInterval(() => {
     $.ajax({
       type: "GET",
-      url: "OBCSensors.json",
+      url: "OBCTemp.json",
       success: function (response) {
         response.forEach((data) => {
-          $("#batteryTemp_1").html(data["Battery Temperature 1"]);
-          $("#batteryTemp_2").html(data["Battery Temperature 2"]);
-          $("#batteryTemp_3").html(data["Battery Temperature 3"]);
-          $("#batteryTemp_4").html(data["Battery Temperature 4"]);
-          $("#boardTemp").html(data["Board Temperature"]);
+          $("#batteryTemp_1").html(data["Battery Temperature 1"] + "&degC");
+          $("#batteryTemp_2").html(data["Battery Temperature 2"] + "&degC");
+          $("#batteryTemp_3").html(data["Battery Temperature 3"] + "&degC");
+          $("#batteryTemp_4").html(data["Battery Temperature 4"] + "&degC");
+          $("#boardTemp").html(data["Board Temperature"] + "&degC");
         });
       },
     });
@@ -23,11 +23,10 @@ $(document).ready(function () {
       url: "BME280.json",
       success: function (result) {
         result.forEach((bme) => {
-          $("#ambientTemp").html(bme["Ambient Temperature"]);
-          $("#data_humidity").html(bme.Humidity);
-          $("#data_pressure").html(bme.pressure);
-          $("#data_altitude").html(bme.altitude);
-          $("#graphHumidity").html(bme.Humidity.toString().replace(/\%/g, ""));
+          $("#ambientTemp").html(bme["Ambient Temperature"] + "&degC");
+          $("#data_humidity").html(bme.Humidity + "%");
+          $("#data_pressure").html(bme.pressure + "hPa");
+          $("#data_altitude").html(bme.altitude + "m");
         });
       },
     });
@@ -57,6 +56,35 @@ $(document).ready(function () {
     });
   }, 1000);
 
+  // fetching Gyro sensor Data
+  setInterval(() => {
+    $.ajax({
+      type: "GET",
+      url: "gyroSensor.json",
+      success: function (gyroResponse) {
+        gyroResponse.forEach((gyroElement) => {
+          $("#acceleration_id").html(gyroElement.acceleration);
+          $("#gyroscope_id").html(gyroElement.gyroscope);
+        });
+      },
+    });
+  }, 1000);
+
+  // fetching data from GPS Sensor
+  setInterval(() => {
+    $.ajax({
+      type: "GET",
+      url: "GPS.json",
+      success: function (gpsResponse) {
+        gpsResponse.forEach((gpsElement) => {
+          $("#latitude_id").html(gpsElement.Latitude);
+          $("#longitude_id").html(gpsElement.Longitude);
+          $("#gps_altitude").html(gpsElement.gpsAltitude);
+        });
+      },
+    });
+  }, 1000);
+  /*
   // insert json data automatically for obc sensor
   let Temperature_1 = 5;
   let Temperature_2 = 6;
@@ -131,4 +159,80 @@ $(document).ready(function () {
       },
     });
   }, 2000);
+
+  // insert data for gyro sensor
+  let accelerationX = 0;
+  let accelerationY = 0;
+  let accelerationZ = 0;
+  let gyroscopeX = 0;
+  let gyroscopeY = 0;
+  let gyroscopeZ = 0;
+
+  setInterval(() => {
+    accelerationX = accelerationX + 1;
+    accelerationY = accelerationY + 1;
+    accelerationZ = accelerationZ + 1;
+    gyroscopeX = gyroscopeX + 1;
+    gyroscopeY = gyroscopeY + 1;
+    gyroscopeZ = gyroscopeZ + 1;
+
+    $.ajax({
+      type: "POST",
+      url: "json.php",
+      data: {
+        accelerationX: accelerationX,
+        accelerationY: accelerationY,
+        accelerationZ: accelerationZ,
+        gyroscopeX: gyroscopeX,
+        gyroscopeY: gyroscopeY,
+        gyroscopeZ: gyroscopeZ,
+        submitGyro: "submitGyro",
+      },
+      success: function (submitResponse) {
+        if (submitResponse == 200) {
+          console.log("Success");
+        }
+        if (submitResponse == 404) {
+          console.log("Failed");
+        }
+      },
+    });
+  }, 2000);
+
+  // insert data for gps sensor
+  let gpsLatitude = 10;
+  let gpsLatitudeN = 30;
+  let gpsLongitude = 18;
+  let gpsLongitudeN = 30;
+  let gpsAltitude = 100;
+
+  setInterval(() => {
+    gpsLatitude = gpsLatitude + 1;
+    gpsLatitudeN = gpsLatitudeN + 1;
+    gpsLongitude = gpsLongitude + 1;
+    gpsLongitudeN = gpsLongitudeN + 1;
+    gpsAltitude = gpsAltitude + 8;
+
+    $.ajax({
+      type: "POST",
+      url: "json.php",
+      data: {
+        gpsLatitude: gpsLatitude,
+        gpsLatitudeN: gpsLatitudeN,
+        gpsLongitude: gpsLongitude,
+        gpsLongitudeN: gpsLongitudeN,
+        gpsAltitude: gpsAltitude,
+        submitGPS: "submitGPS",
+      },
+      success: function (GpsResponse) {
+        if (GpsResponse == 200) {
+          console.log("Success");
+        }
+        if (GpsResponse == 404) {
+          console.log("Failed");
+        }
+      },
+    });
+  }, 2000);
+  */
 });
