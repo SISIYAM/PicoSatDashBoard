@@ -482,13 +482,11 @@ body {
 }
 
 .main .container .content .group-73-2D5 .auto-group-blvu-Fbd .group-77-z3R {
+  margin-right: 1.2538rem;
   box-sizing: border-box;
-  padding: 1.097rem 1.647rem 0.173rem 1.096rem;
-  width: 23.1424rem;
+  padding: 1.097rem 1.061rem 0.173rem 1.061rem;
+  width: 32.6rem;
   height: 100%;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
   background-color: #000e28;
   border-radius: 0.6rem;
   flex-shrink: 0;
@@ -517,15 +515,13 @@ body {
 
 .main .container .content .group-73-2D5 .auto-group-blvu-Fbd .group-78-jv7 {
   box-sizing: border-box;
-  padding: 1.097rem 1.647rem 0.173rem 1.096rem;
-  width: 19.1424rem;
+  padding: 1.097rem 1.061rem 0.173rem 1.061rem;
+  width: 32rem;
   height: 100%;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
   background-color: #000e28;
   border-radius: 0.6rem;
   flex-shrink: 0;
+  margin-left: -1.3rem;
 }
 
 .main .container .content .group-73-2D5 .auto-group-blvu-Fbd .group-78-jv7 .battery-temperature-1-GQF {
@@ -633,12 +629,11 @@ body {
   background-color: #000e28;
   border-radius: 0.6rem;
   flex-shrink: 0;
-  margin-left: 160px;
 }
 
 .main .container .content .group-73-2D5 .auto-group-3yrs-m83 .group-81-HVh .board-temperature-DPM {
   margin-bottom: 1.4933rem;
-  max-width: 9.6rem;
+  max-width: 8.6rem;
   font-size: 1.4rem;
   font-weight: 500;
   line-height: 1.2125;
@@ -732,12 +727,9 @@ body {
 
 .main .container .content .gyrosensor .auto-group-blvu-Fbd .group-78-jv7 {
   box-sizing: border-box;
-  padding: 1.097rem 1.647rem 0.173rem 1.096rem;
-  width: 19.1424rem;
+  padding: 1.097rem 1.061rem 0.173rem 1.061rem;
+  width: 32rem;
   height: 100%;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
   background-color: #000e28;
   border-radius: 0.6rem;
   flex-shrink: 0;
